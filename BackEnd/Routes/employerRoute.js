@@ -1,7 +1,7 @@
 const express = require("express");
 const router = express.Router();
 
-const EmployeeController = require("../Contoller/employeeDashBoardController.js");
+const EmployeeController = require("../Contoller/employeeDashBoardController");
 
 router.get("/getEmployeeData", EmployeeController.getEmployeeData);
 

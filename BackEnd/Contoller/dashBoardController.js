@@ -63,11 +63,11 @@ const getAnalyticsData = async (req, res) => {
   const { year, Month } = req.query;
   let filteredData = analyticsData;
 
-  if (year || month) {
+  if (year || Month) {
     filteredData = filteredData.filter((item) => {
       const date = new Date(item.date);
       if (year && date.getFullYear() !== parseInt(year)) return false;
-      if (month && date.getMonth() + 1 !== parseInt(month)) return false;
+      if (Month && date.getMonth() + 1 !== parseInt(Month)) return false;
       return true;
     });
   }

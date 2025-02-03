@@ -1,7 +1,7 @@
 const express = require("express");
 const router = express.Router();
 const dashBoardController = require("../Contoller/dashBoardController.js");
-const EmployeeController = require("../Contoller/EmployeeDashBoardController.js");
+
 const CandidateController = require("../Contoller/CandidateDashBoardController.js");
 const JobPostedController = require("../Contoller/JobPostedDashBoardController.js");
 const RevenueController = require("../Contoller/RevenueDashboardController.js");
@@ -9,7 +9,7 @@ const RevenueController = require("../Contoller/RevenueDashboardController.js");
 router
   .get("/", dashBoardController.getData)
   .get("/", dashBoardController.getAnalyticsData);
-router.route("/Employer").get(EmployeeController.getEmployeeData);
+
 router.route("/Candidate").get(CandidateController.getCandidateData);
 router.route("/JobPosted").get(JobPostedController.getJobPostedData);
 

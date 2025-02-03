@@ -13,6 +13,15 @@ const getEmployeeData = async (req, res) => {
         ActiveEmployer: "4.3% Down from yesterday",
         TopEmployer: "1.3% Last 7 days",
       },
+      Analytics: {
+        jobPosted: 278532,
+        candidates: 2000,
+      },
+      overview: {
+        activeAccounts: 2000,
+        deactivatedAccounts: 2000,
+        verificationPending: 30,
+      },
     };
 
     return res.status(200).json({ message: Employerdata });

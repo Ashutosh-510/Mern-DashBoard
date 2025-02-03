@@ -13,6 +13,15 @@ const getRevenueData = async (req, res) => {
         ActiveSubscription: "4.3 Down from yesterday",
         NotSubscribed: "1.3% Up from Yesterday",
       },
+      Analytics: {
+        jobPosted: 278532,
+        candidates: 2000,
+      },
+      overview: {
+        activeAccounts: 2000,
+        deactivatedAccounts: 2000,
+        verificationPending: 30,
+      },
     };
     res.status(200).json({ message: JobpostedData });
   } catch (error) {

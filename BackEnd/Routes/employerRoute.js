@@ -3,6 +3,6 @@ const router = express.Router();
 
 const EmployeeController = require("../Contoller/EmployeeDashBoardController.js");
 
-router.get("/", EmployeeController.getEmployeeData);
+router.get("/getEmployeeData", EmployeeController.getEmployeeData);
 
 module.exports = router;

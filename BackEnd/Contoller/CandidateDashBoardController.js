@@ -29,7 +29,7 @@ const getCandidateData = async (req, res) => {
     res.status(404).json({ message: error.message });
   }
 };
-
+// export
 module.exports = {
   getCandidateData,
 };

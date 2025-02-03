@@ -4,7 +4,7 @@ const app = express();
 const bodyParser = require("body-parser");
 const dashboardRoutes = require("./Routes/dashboardRoutes");
 const employerRoutes = require("./Routes/employerRoute");
-const candidateRoute = require("./Routes/candidateRoute");
+const candidateRoute = require("./Routes/CandidateRoute");
 const JobpostedRoutes = require("./Routes/jobpostedRoute");
 const revenueRoutes = require("./Routes/revenueRoute");
 

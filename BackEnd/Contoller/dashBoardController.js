@@ -3,12 +3,16 @@ const DashBoard = require("../Models/dashBoardModel");
 const getData = async (req, res) => {
   try {
     const data = {
-      employers: 2000,
-      candidates: 55000,
-      jobsPosted: 10000,
-      revenue: 3.42,
-      jobPostChange: -4.3,
-      revenueChange: 1.8,
+      summary: {
+        employers: 2000,
+        candidates: 55000,
+        jobsPosted: 10000,
+        revenue: 3.42,
+      },
+      changes: {
+        jobPostChange: -4.3,
+        revenueChange: 1.8,
+      },
     };
 
     return res.status(200).json({ message: data });
@@ -17,53 +21,80 @@ const getData = async (req, res) => {
   }
 };
 
-const getEmployeeData = async (req, res) => {
-  try {
-    const Employerdata = {
-      NewEmployer: 12,
-      TotalEmployers: 55000,
-      ActiveEmployer: 10000,
-      TopEmployer: 3.42,
-    };
+const analyticsData = [
+  {
+    date: "2025-02-01",
+    employer: 2500,
+    candidate: 53000,
+    jobs: 10500,
+    revenue: 3.5,
+  },
+  {
+    date: "2025-02-02",
+    employer: 2550,
+    candidate: 53500,
+    jobs: 10400,
+    revenue: 3.6,
+  },
+  {
+    date: "2025-02-03",
+    employer: 2600,
+    candidate: 54000,
+    jobs: 10300,
+    revenue: 3.7,
+  },
+  {
+    date: "2025-03-01",
+    employer: 2700,
+    candidate: 55000,
+    jobs: 10200,
+    revenue: 3.8,
+  },
+  {
+    date: "2025-03-02",
+    employer: 2750,
+    candidate: 55500,
+    jobs: 10100,
+    revenue: 3.9,
+  },
+];
 
-    return res.status(200).json({ message: Employerdata });
-  } catch (error) {
-    return res.status(404).json({ message: error.message });
+const getAnalyticsData = async (req, res) => {
+  const { year, Month } = req.query;
+  let filteredData = analyticsData;
+
+  if (year || month) {
+    filteredData = filteredData.filter((item) => {
+      const date = new Date(item.date);
+      if (year && date.getFullYear() !== parseInt(year)) return false;
+      if (month && date.getMonth() + 1 !== parseInt(month)) return false;
+      return true;
+    });
   }
+
+  // Group data by month
+  const groupedData = filteredData.reduce((result, item) => {
+    const date = new Date(item.date);
+    const monthName = date.toLocaleString("default", { month: "long" });
+    const year = date.getFullYear();
+    const key = `${monthName}-${year}`;
+
+    if (!result[key]) {
+      result[key] = { month: monthName, year, data: [] };
+    }
+
+    result[key].data.push(item);
+    return result;
+  }, {});
+
+  res.json({
+    status: "success",
+    data: { analytics: Object.values(groupedData) },
+  });
 };
 
-const getCandidateData = async (req, res) => {
-  try {
-    const CandidateData = {
-      NewCandidate: 12,
-      TotalCandidate: 2000,
-      ActiveCandidate: 400,
-      CandidateHired: 1000,
-    };
-
-    res.status(200).json({ message: CandidateData });
-  } catch (error) {
-    res.status(404).json({ message: error.message });
-  }
-};
-
-const getJobPostedData = async (req, res) => {
-  try {
-    const JobpostedData = {
-      NewJobPosted: 3000,
-      TotalJobPosted: 3000,
-      TotalActiveJobs: 500,
-      ExpiredJobs: 2500,
-    };
-    res.status(200).json({ message: JobpostedData });
-  } catch (error) {
-    res.status(404).json({ message: error.message });
-  }
-};
-
+//const
 module.exports = {
   getData,
-  getEmployeeData,
-  getCandidateData,
-  getJobPostedData,
+  getAnalyticsData,
 };

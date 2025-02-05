@@ -1,7 +1,7 @@
 const express = require("express");
 const router = express.Router();
 
-const JobPostedController = require("../Contoller/jobPostedDashBoardController");
+const JobPostedController = require("../contoller/jobPostedDashBoardController");
 
 router.get("/GetJobPosted", JobPostedController.getJobPostedData);
 

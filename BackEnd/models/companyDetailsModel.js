@@ -1,7 +1,7 @@
 const mongoose = require("mongoose");
 
 const companyDetail = new mongoose.Schema({
-  campanyName: {
+  companyName: {
     type: String,
     required: true,
   },
@@ -17,7 +17,7 @@ const companyDetail = new mongoose.Schema({
     type: String,
     required: true,
   },
-  companyBenifits: {
+  companyBenefits: {
     type: String,
     required: true,
   },
@@ -25,7 +25,7 @@ const companyDetail = new mongoose.Schema({
     type: Date,
     required: true,
   },
-  companyOrginazationType: {
+  companyOrganizationType: {
     type: String,
     required: true,
   },

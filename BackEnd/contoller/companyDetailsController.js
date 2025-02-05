@@ -68,4 +68,29 @@ const postCompanyDetails = async (req, res) => {
   }
 };
 
-module.exports = { getCompanyDetails, postCompanyDetails };
+const deleteCompanyDetails = async (req, res) => {
+  try {
+    const { id } = req.params;
+
+    if (!id) {
+      return res.status(400).json({ message: "Company ID is required!" });
+    }
+
+    const deletedCompany = await CompanyDetail.findByIdAndDelete(id);
+
+    if (!deletedCompany) {
+      return res.status(404).json({ message: "Company not found!" });
+    }
+
+    return res.status(200).json({
+      success: true,
+      message: "Company details deleted successfully!",
+    });
+  } catch (error) {
+    return res.status(500).json({ message: "Server Error", error: error.message });
+  }
+};
+
+module.exports = { getCompanyDetails, postCompanyDetails, deleteCompanyDetails };
+
+

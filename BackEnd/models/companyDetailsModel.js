@@ -23,7 +23,8 @@ const companyDetail = new mongoose.Schema({
   },
   companyFounded: {
     type: Date,
-    required: true,
+    default: Date.now(),
+    // required: true,
   },
   companyOrganizationType: {
     type: String,

@@ -1,6 +1,6 @@
 const express = require("express");
 const router = express.Router();
-const dashBoardController = require("../Contoller/dashBoardController.js");
+const dashBoardController = require("../contoller/dashBoardController.js");
 
 router
   .get("/", dashBoardController.getData)

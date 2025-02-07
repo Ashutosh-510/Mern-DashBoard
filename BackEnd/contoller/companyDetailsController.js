@@ -1,6 +1,6 @@
 const CompanyDetail = require("../models/companyDetailsModel");
 
-const getCompanyDetails = async (req, res) => {
+const getCompanyDetailsById = async (req, res) => {
   try {
     const { id } = req.params;
     let comDetails = await CompanyDetail.findById(id);
@@ -15,7 +15,7 @@ const getCompanyDetails = async (req, res) => {
   }
 };
 
-const postCompanyDetails = async (req, res) => {
+const createCompanyDetails = async (req, res) => {
   try {
     const {
       companyName,
@@ -30,13 +30,12 @@ const postCompanyDetails = async (req, res) => {
     } = req.body;
 
     if (
-      !campanyName ||
+      !companyName ||
       !companyType ||
       !companyContent ||
       !companyVision ||
-      !companyBenifits ||
-      !companyFounded ||
-      !companyOrginazationType ||
+      !companyBenefits ||
+      !companyOrganizationType ||
       !companyTeamSize ||
       !companyContact ||
       !companyContact.companyUrl ||
@@ -46,7 +45,7 @@ const postCompanyDetails = async (req, res) => {
       return res.status(400).json({ message: "All fields are required!" });
     }
 
-    const newCompany = new companyModel({
+    const newCompany = new CompanyDetail({
       companyName,
       companyType,
       companyContent,
@@ -61,12 +60,13 @@ const postCompanyDetails = async (req, res) => {
     await newCompany.save();
     res.status(201).json({
       message: "Company details added successfully!",
-      company: newCompany,
+      data: newCompany,
     });
   } catch (error) {
     res.status(500).json({ message: "Server Error", error: error.message });
   }
 };
+
 
 const deleteCompanyDetails = async (req, res) => {
   try {
@@ -91,6 +91,7 @@ const deleteCompanyDetails = async (req, res) => {
   }
 };
 
-module.exports = { getCompanyDetails, postCompanyDetails, deleteCompanyDetails };
+module.exports = { getCompanyDetailsById, createCompanyDetails, deleteCompanyDetails };
+
 
 

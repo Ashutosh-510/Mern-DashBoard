@@ -1,4 +1,4 @@
-const DashBoard = require("../Models/dashBoardModel");
+const DashBoard = require("../models/dashBoardModel");
 
 const getData = async (req, res) => {
   try {

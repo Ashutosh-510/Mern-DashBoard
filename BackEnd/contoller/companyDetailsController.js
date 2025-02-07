@@ -15,7 +15,7 @@ const getCompanyDetails = async (req, res) => {
   }
 };
 
-const postCompanyDetails = async (req, res) => {
+const createCompanyDetails = async (req, res) => {
   try {
     const {
       companyName,
@@ -68,4 +68,4 @@ const postCompanyDetails = async (req, res) => {
   }
 };
 
-module.exports = { getCompanyDetails, postCompanyDetails };
+module.exports = { getCompanyDetails, createCompanyDetails };

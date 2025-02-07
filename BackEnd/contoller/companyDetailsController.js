@@ -1,6 +1,6 @@
 const CompanyDetail = require("../models/companyDetailsModel");
 
-const getCompanyDetails = async (req, res) => {
+const getCompanyDetailsById = async (req, res) => {
   try {
     const { id } = req.params;
     let comDetails = await CompanyDetail.findById(id);
@@ -30,13 +30,12 @@ const createCompanyDetails = async (req, res) => {
     } = req.body;
 
     if (
-      !campanyName ||
+      !companyName ||
       !companyType ||
       !companyContent ||
       !companyVision ||
-      !companyBenifits ||
-      !companyFounded ||
-      !companyOrginazationType ||
+      !companyBenefits ||
+      !companyOrganizationType ||
       !companyTeamSize ||
       !companyContact ||
       !companyContact.companyUrl ||
@@ -46,7 +45,7 @@ const createCompanyDetails = async (req, res) => {
       return res.status(400).json({ message: "All fields are required!" });
     }
 
-    const newCompany = new companyModel({
+    const newCompany = new CompanyDetail({
       companyName,
       companyType,
       companyContent,
@@ -61,11 +60,11 @@ const createCompanyDetails = async (req, res) => {
     await newCompany.save();
     res.status(201).json({
       message: "Company details added successfully!",
-      company: newCompany,
+      data: newCompany,
     });
   } catch (error) {
     res.status(500).json({ message: "Server Error", error: error.message });
   }
 };
 
-module.exports = { getCompanyDetails, createCompanyDetails };
+module.exports = { getCompanyDetailsById, createCompanyDetails };

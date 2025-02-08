@@ -2,16 +2,11 @@ const express = require("express");
 const cors = require("cors");
 const app = express();
 
+app.use(express.json());
+
 const bodyParser = require("body-parser");
 
-const dashboardRoutes = require("./routes/dashboardRoutes");
-const employerRoutes = require("./routes/employerRoute");
-const candidateRoute = require("./routes/candidateRoute");
-const JobpostedRoutes = require("./routes/jobpostedRoute");
-const revenueRoutes = require("./routes/revenueRoute");
-
-const connectMonogDB = require("./Database/db");  
-
+const connectMonogDB = require("./database/db");
 
 const dashboardRoutes = require("./routes/dashboardRoutes");
 const employerRoutes = require("./routes/employerRoute");

@@ -9,9 +9,9 @@ const employersData = new mongoose.Schema({
     type: Number,
     default: 0,
   },
-  activeEmployers: {
-    type: Number,
-    default: 0,
+  isActive: {
+    type: Boolean,
+    default: true,
   },
   topEmployer: {
     type: Number,

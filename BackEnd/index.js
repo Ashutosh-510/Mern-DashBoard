@@ -6,23 +6,23 @@ app.use(express.json());
 
 const bodyParser = require("body-parser");
 
-const connectMonogDB = require("./database/db");
+const connectMongoDB = require("./database/db");
 
 const dashboardRoutes = require("./routes/dashboardRoutes");
-const employerRoutes = require("./routes/employerRoute");
+const employeerRoutes = require("./routes/employerRoute");
 const candidateRoute = require("./routes/candidateRoute");
 const JobpostedRoutes = require("./routes/jobpostedRoute");
 const revenueRoutes = require("./routes/revenueRoute");
 const companyDetailsRoutes = require("./routes/companyDetailsRoute");
 
 app.use("/api/dashboard", dashboardRoutes);
-app.use("/api/employer", employerRoutes);
+app.use("/api/employer", employeerRoutes);
 app.use("/api/candidate", candidateRoute);
 app.use("/api/JobPosted", JobpostedRoutes);
 app.use("/api/revenue", revenueRoutes);
 app.use("/api/companyDetails", companyDetailsRoutes);
 
-connectMonogDB();
+connectMongoDB();
 const PORT = 5000;
 app.listen(PORT, () => {
   console.log(`Server is running on http://localhost:${PORT}`);
